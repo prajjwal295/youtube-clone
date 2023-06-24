@@ -1,27 +1,8 @@
-import React from "react";
-import { VscVerifiedFilled } from "react-icons/vsc";
-import { BiDotsVerticalRounded } from "react-icons/bi";
+import React from 'react'
 
-const Card = ({
-  thumbnail,
-  title,
-  channelName,
-  channellogo,
-  views,
-  publishTime,
-  key,
-  isVerified,
+const SearchCard = ({
+    type,
 }) => {
-
-
-  // var hover;
-
-  // const handleMouseOver = () => {
-  //   hover=true;
-  // };
-  // const handleMouseOut = () => {
-  //    hover=false;
-  // };
 
   return (
     <div
@@ -33,7 +14,11 @@ const Card = ({
       <img src={thumbnail} className="w-full rounded-lg" alt="cards" />
       <div className="flex justify-between items-start p-2">
         <div className="flex-[0.2]  h-[36px] w-[36px]">
-          <img src={channellogo} className="rounded-full h-[36px] w-[36px]" alt="channel" />
+          <img
+            src={channellogo}
+            className="rounded-full h-[36px] w-[36px]"
+            alt="channel"
+          />
         </div>
         <ul className="flex-[0.8]">
           <li className="font-semibold overflow-hidden text-ellipsis line-clamp-2 ">
@@ -50,10 +35,10 @@ const Card = ({
             </li>
           </ul>
         </ul>
-        <BiDotsVerticalRounded className="text-2xl  " /> 
+        <BiDotsVerticalRounded className="text-2xl  " />
       </div>
     </div>
   );
-};
+}
 
-export default Card;
+export default SearchCard
