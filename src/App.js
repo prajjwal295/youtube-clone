@@ -15,6 +15,7 @@ import React, { useState } from "react";
 import { Provider } from "react-redux";
 import SearchOptions from "./components/SearchOptions";
 import SearchPage from "./components/SearchPage";
+import Channel from "./components/Channel";
 
 
 function App() {
@@ -28,19 +29,25 @@ function App() {
         <div>
           <Header setResults={setResults} />
           <div className="flex  justify-center">
-            {results ? (
-              <SearchOptions results={results} setsearch={setsearch} />
+            {search ? (
+
+              <SearchOptions results={results} setsearch={setsearch} className="hidden"/>
             ) : (
               <></>
             )}
           </div>
           <div className="flex">
-            <SideNav />
+            <SideNav className=""/>
             <Routes>
               <Route path="/" element={<Body />} />
+              <Route path="home" element={<Body />} />
               <Route
                 path="search/:id"
                 element={<SearchPage search={search} />}
+              />
+              <Route
+                path="channel/:id"
+                element={<Channel  />}
               />
             </Routes>
           </div>

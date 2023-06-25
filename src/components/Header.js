@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { GoSearch } from "react-icons/go";
 import { BsFillMicFill } from "react-icons/bs";
@@ -30,15 +30,15 @@ const Header = ({ setResults }) => {
     const options = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": "9d79a9aa69msh03255c4ecc93005p175c40jsn2920bf14c407",
+        "X-RapidAPI-Key": "762add6099msha41e68e8366a90ap135b65jsnd61ae5b350c2",
         "X-RapidAPI-Host": "youtube138.p.rapidapi.com",
       },
     };
 
     try {
       const response = await fetch(url, options);
-      const json = await response.json();
-      setResults(json.results);
+      const json = await response?.json();
+      setResults(json?.results);
       
     } catch (error) {
       console.error(error);
@@ -68,9 +68,11 @@ const Header = ({ setResults }) => {
             setSearch(e.target.value);
           }}
         />
-        <button className="rounded-r-full bg-gray-100 border-2  border-l-0 w-16 h-10">
-          <GoSearch className=" m-auto" />
-        </button>
+        <Link to={"/search/" + search}>
+          <button className="rounded-r-full bg-gray-100 border-2  border-l-0 w-16 h-10">
+            <GoSearch className=" m-auto" />
+          </button>
+        </Link>
         <button className="  w-10 h-10 rounded-full ml-4">
           <BsFillMicFill className=" m-0  p-0 w-full h-5" />
         </button>
