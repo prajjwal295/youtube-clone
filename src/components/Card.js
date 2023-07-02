@@ -15,16 +15,6 @@ const Card = ({
   isVerified,
 }) => {
 
-
-  // var hover;
-
-  // const handleMouseOver = () => {
-  //   hover=true;
-  // };
-  // const handleMouseOut = () => {
-  //    hover=false;
-  // };
-
   return (
     <div
       className="p-2 m-2 w-[350px] rounded-lg items-center justify-center  "

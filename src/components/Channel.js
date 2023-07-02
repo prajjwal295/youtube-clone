@@ -17,7 +17,7 @@ const Channel = () => {
     const options = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": "762add6099msha41e68e8366a90ap135b65jsnd61ae5b350c2",
+        "X-RapidAPI-Key": "a9ea4f44demshe17e9d7c9a96b24p15b4bbjsn4a50180d1bfe",
         "X-RapidAPI-Host": "youtube138.p.rapidapi.com",
       },
     };
@@ -25,7 +25,7 @@ const Channel = () => {
     try {
       const response = await fetch(url, options);
       const result = await response.json();
-      console.log("result", result);
+      // console.log("result", result);
       setSearchResults(result);
     } catch (error) {
       console.error(error);

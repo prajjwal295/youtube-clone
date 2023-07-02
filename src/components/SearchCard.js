@@ -2,6 +2,7 @@ import React from "react";
 import { VscVerifiedFilled } from "react-icons/vsc";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 
+
 const SearchCard = ({
   thumbnail,
   title,
@@ -13,6 +14,8 @@ const SearchCard = ({
   key,
   isVerified,
 }) => {
+
+   
   return (
     <div
       className="p-2 ml-2 my-0 w-full flex rounded-lg items-center  border-black"

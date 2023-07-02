@@ -6,31 +6,57 @@ import { GoSearch } from "react-icons/go";
 import { BsFillMicFill } from "react-icons/bs";
 import { BiVideoPlus } from "react-icons/bi";
 import { IoIosNotificationsOutline } from "react-icons/io";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { disableSearchCard, enableSearchCard } from "../utils/CartSlice";
 import { setSideNav } from "../utils/CartSlice";
+import { cacheResults } from "../utils/SearchSlice";
 // import { SiYoutubetv } from "react-icons/si";
 
 const Header = ({ setResults }) => {
   const dispatch = useDispatch();
+  // const searchValue = useSelector((store)=>store.cart.searchValue);
 
   const handleSidenav = () => {
     dispatch(setSideNav());
   };
+  const showSearchCard = () => {
+    dispatch(enableSearchCard());
+  };
+  const hideSearchCard = () => {
+    dispatch(disableSearchCard());
+  };
+
+  const searchCache = useSelector((store) => store.search);
 
   const [search, setSearch] = useState("");
   // console.log(search);
 
   useEffect(() => {
-    autoComplete(search);
+    const timer = setTimeout(() => {
+      if (searchCache[search]) {
+        setResults(searchCache[search]);
+      } else {
+        autoComplete();
+      }
+    }, 200);
+    // Concept of Debouncing
+    // Reffer Notes
+
+    return () => {
+      clearTimeout(timer);
+    };
+    // this return function will be called during the unmounting phase of the useEffect
+    // Reffer Notes
   }, [search]);
 
-  const autoComplete = async (value) => {
-    console.log(value);
-    const url = `https://youtube138.p.rapidapi.com/auto-complete/?q=${value}&hl=en&gl=US`;
+  const autoComplete = async () => {
+    console.log(search);
+    // console.log(value);
+    const url = `https://youtube138.p.rapidapi.com/auto-complete/?q=${search}&hl=en&gl=US`;
     const options = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": "762add6099msha41e68e8366a90ap135b65jsnd61ae5b350c2",
+        "X-RapidAPI-Key": "a9ea4f44demshe17e9d7c9a96b24p15b4bbjsn4a50180d1bfe",
         "X-RapidAPI-Host": "youtube138.p.rapidapi.com",
       },
     };
@@ -39,7 +65,11 @@ const Header = ({ setResults }) => {
       const response = await fetch(url, options);
       const json = await response?.json();
       setResults(json?.results);
-      
+      dispatch(
+        cacheResults({
+          [search]: json?.results,
+        })
+      );
     } catch (error) {
       console.error(error);
     }
@@ -66,6 +96,12 @@ const Header = ({ setResults }) => {
           placeholder="search"
           onChange={(e) => {
             setSearch(e.target.value);
+          }}
+          onFocus={() => {
+            showSearchCard();
+          }}
+          onBlur={() => {
+            hideSearchCard();
           }}
         />
         <Link to={"/search/" + search}>

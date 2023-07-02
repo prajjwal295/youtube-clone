@@ -10,50 +10,42 @@ import {
   Route,
   BrowserRouter,
 } from "react-router-dom";
-import store from "./utils/store";
 import React, { useState } from "react";
-import { Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 import SearchOptions from "./components/SearchOptions";
 import SearchPage from "./components/SearchPage";
 import Channel from "./components/Channel";
-
+import WatchVideo from "./components/WatchVideo";
 
 function App() {
+  const isSearchVisible = useSelector((store) => store.cart.searchCard);
   const [results, setResults] = useState([]);
   const [search, setsearch] = useState("");
 
-  console.log(results);
+  // console.log(results);
   return (
-    <Provider store={store}>
-      <BrowserRouter>
-        <div>
-          <Header setResults={setResults} />
-          <div className="flex  justify-center">
-            {search ? (
-
-              <SearchOptions results={results} setsearch={setsearch} className="hidden"/>
-            ) : (
-              <></>
-            )}
-          </div>
-          <div className="flex">
-            <SideNav className=""/>
-            <Routes>
-              <Route path="/" element={<Body />} />
-              <Route path="home" element={<Body />} />
-              <Route
-                path="search/:id"
-                element={<SearchPage search={search} />}
-              />
-              <Route
-                path="channel/:id"
-                element={<Channel  />}
-              />
-            </Routes>
-          </div>
+    <BrowserRouter>
+      <div>
+        <Header setResults={setResults} />
+        <div className="flex  justify-center">
+          {isSearchVisible ? (
+            <SearchOptions results={results} setsearch={setsearch} />
+          ) : (
+            <></>
+          )}
         </div>
-      </BrowserRouter>
-    </Provider>
+        <div className="flex">
+          <SideNav className="" />
+          <Routes>
+            <Route path="/" element={<Body />} />
+            <Route path="watch/:id" element={<WatchVideo />} />
+            <Route path="home" element={<Body />} />
+            <Route path="search/:id" element={<SearchPage search={search} />} />
+            <Route path="channel/:id" element={<Channel />} />
+          </Routes>
+        </div>
+      </div>
+    </BrowserRouter>
   );
 }
 
