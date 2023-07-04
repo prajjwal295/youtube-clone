@@ -6,6 +6,7 @@ const cartSlice = createSlice({
     sideNav : true,
     searchCard:false,
     searchValue:"",
+    minimizePlayer:false,
   },
 
   reducers: {
@@ -29,9 +30,12 @@ const cartSlice = createSlice({
       state.searchValue = action.payload;
 
     },
+    setMinimization:(state,action)=>{
+        state.minimizePlayer = action.payload;
+    }
   },
 });
 
-export const { setSideNav , disableSearchCard , enableSearchCard , setSearchValue , hideSideNav } = cartSlice.actions;
+export const { setSideNav , disableSearchCard , enableSearchCard , setSearchValue , hideSideNav ,setMinimization } = cartSlice.actions;
 
 export default cartSlice.reducer;

@@ -19,17 +19,19 @@ import WatchVideo from "./components/WatchVideo";
 
 function App() {
   const isSearchVisible = useSelector((store) => store.cart.searchCard);
+  const isMinimized = useSelector((store) => store.cart.minimizePlayer);
   const [results, setResults] = useState([]);
   const [search, setsearch] = useState("");
+  const [videoId, setVideoId] = useState(null);
 
-  // console.log(results);
+  console.log(videoId);
   return (
     <BrowserRouter>
       <div>
         <Header setResults={setResults} />
         <div className="flex  justify-center">
           {isSearchVisible ? (
-            <SearchOptions results={results} setsearch={setsearch} />
+            <SearchOptions results={results} setsearch={setsearch}/>
           ) : (
             <></>
           )}
@@ -37,8 +39,12 @@ function App() {
         <div className="flex">
           <SideNav className="" />
           <Routes>
-            <Route path="/" element={<Body />} />
-            <Route path="watch/:id" element={<WatchVideo />} />
+            <Route path="/" element={<Body videoId={videoId}/>} />
+            {isMinimized ? (
+              <Route path="/" element={<Body videoId={videoId}/>} />
+            ) : (
+              <Route path="watch/:id" element={<WatchVideo setVideoId={setVideoId}/>} />
+            )}
             <Route path="home" element={<Body />} />
             <Route path="search/:id" element={<SearchPage search={search} />} />
             <Route path="channel/:id" element={<Channel />} />

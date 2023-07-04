@@ -1,18 +1,27 @@
 import React, { useEffect, useState } from "react";
 import ButtonList from "./ButtonList";
+import { useSelector } from "react-redux/es/hooks/useSelector";
 import Card from "./Card";
+import { setMinimization } from "../utils/CartSlice";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { hideSideNav } from "../utils/CartSlice";
 
-const Body = () => {
+const Body = ({ videoId }) => {
   const [result, setResult] = useState("");
 
+    const isMinimized = useSelector((store) => store.cart.minimizePlayer);
+
+  console.log({ videoId });
   const dispatch = useDispatch();
 
-  const handleSideNav = () =>{
+    const handleMinimization = () => {
+      dispatch(setMinimization(false));
+    };
+
+  const handleSideNav = () => {
     dispatch(hideSideNav());
-  }
+  };
 
   useEffect(() => {
     getApi();
@@ -39,17 +48,19 @@ const Body = () => {
   };
 
   return (
-    <div className="cd m-auto">
+    <div className="cd m-auto relative">
       <ButtonList />
       <div className=" flex flex-wrap justify-start m-auto w-[1200px]  pt-[24px] ">
         {result?.contents?.map((item) => {
           // console.log(item);
           return (
+           
             <Link
-              to={"/watch/" +item?.video?.videoId}
+              to={"/watch/" + item?.video?.videoId}
               key={item?.video?.videoId}
-              onClick={()=>{
+              onClick={() => {
                 handleSideNav();
+                handleMinimization();
               }}
             >
               <Card
@@ -66,6 +77,20 @@ const Body = () => {
           );
         })}
       </div>
+      {videoId && (
+        <div className="fixed bottom-2 right-2 rounded-md">
+          <iframe
+            className="h-[250px] w-[370px] rounded-md"
+            width="560"
+            height="315"
+            src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1`}
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoPlay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          ></iframe>
+        </div>
+      )}
     </div>
   );
 };

@@ -4,14 +4,26 @@ import { VscVerifiedFilled } from "react-icons/vsc";
 import { BiLike, BiDislike } from "react-icons/bi";
 import { HiDownload } from "react-icons/hi";
 import { IoMdShareAlt } from "react-icons/io";
+import { FiMinimize2 } from "react-icons/fi";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import Comments from "./Comments";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setMinimization } from "../utils/CartSlice";
 
-const WatchVideo = () => {
+const WatchVideo = ({setVideoId}) => {
   const { id } = useParams();
+   const dispatch = useDispatch();
+      setVideoId(id);
+   
+ 
 
   const [videoDetails, setVideoDetails] = useState("");
+
+  const handleMinimization =() =>{
+
+    dispatch(setMinimization(true));
+  };
 
   useEffect(() => {
     fetchVideoDetails();
@@ -99,6 +111,14 @@ const WatchVideo = () => {
             <button className="h-10 w-full bg-[rgb(242,242,242)]  rounded-full">
               <BiDotsVerticalRounded className="text-2xl m-auto" />
             </button>
+            <Link to="/">
+              <button
+                className="h-10 w-full bg-[rgb(242,242,242)]  rounded-full"
+                onClick={() => handleMinimization()}
+              >
+                <FiMinimize2 className="text-2xl m-auto" />
+              </button>
+            </Link>
           </div>
         </div>
         <div>Ditails</div>

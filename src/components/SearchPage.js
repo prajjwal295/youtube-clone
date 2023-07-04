@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import SearchCard from "./SearchCard";
+import { useDispatch } from "react-redux";
+import { hideSideNav } from "../utils/CartSlice";
 import { useParams } from "react-router-dom";
 import ChannelCard from "./ChannelCard";
 import { Link } from "react-router-dom";
@@ -7,11 +9,18 @@ import { Link } from "react-router-dom";
 const SearchPage = ({ search }) => {
   const [searchResult, setSearchResults] = useState([]);
 
+  
+  const dispatch = useDispatch();
+
+  const handleSideNav = () => {
+    dispatch(hideSideNav());
+  };
+
   const { id } = useParams();
 
   useEffect(() => {
     getSearchAPI();
-  }, []);
+  }, [id, search]);
 
   const getSearchAPI = async () => {
     const url = `https://youtube138.p.rapidapi.com/search/?q=${
@@ -39,16 +48,24 @@ const SearchPage = ({ search }) => {
       <div>FilterOptions</div>
       {searchResult?.contents?.map((item) => {
         return item?.type === "video" ? (
-          <SearchCard
-            thumbnail={item?.video?.thumbnails[0]?.url}
-            title={item?.video?.title}
-            channelName={item?.video?.author?.title}
-            channellogo={item?.video?.author?.avatar[0]?.url}
-            isVerified={item?.video?.author?.badges[0]}
-            views={item?.video?.stats?.views}
-            publishTime={item?.video?.publishedTimeText}
-            description={item?.video?.descriptionSnippet}
-          />
+          <Link
+            to={"/watch/" + item?.video?.videoId}
+            key={item?.video?.videoId}
+            onClick={() => {
+              handleSideNav();
+            }}
+          >
+            <SearchCard
+              thumbnail={item?.video?.thumbnails[0]?.url}
+              title={item?.video?.title}
+              channelName={item?.video?.author?.title}
+              channellogo={item?.video?.author?.avatar[0]?.url}
+              isVerified={item?.video?.author?.badges[0]}
+              views={item?.video?.stats?.views}
+              publishTime={item?.video?.publishedTimeText}
+              description={item?.video?.descriptionSnippet}
+            />
+          </Link>
         ) : (
           <Link to={"/channel/" + item?.channel?.channelId}>
             <ChannelCard

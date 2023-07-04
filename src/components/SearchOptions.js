@@ -24,7 +24,7 @@ const SearchOptions = ({ results, setsearch }) => {
   };
 
   return (
-    <div className="flex flex-col bg-white border-2 rounded-lg w-[550px] absolute m-auto ">
+    <div className="flex flex-col bg-white border-2 rounded-lg w-[550px] absolute m-auto z-10">
       {results?.map((item) => {
         return (
           <Link to={"/search/" + item} key={item}>
@@ -33,11 +33,11 @@ const SearchOptions = ({ results, setsearch }) => {
               onClick={() => {
                 setsearch(item);
                 handleSearchValue(item);
-                 showSearchCard();
+                hideSearchCard();
               }}
-              // onFocus={() => {
-              //   showSearchCard();
-              // }}
+              onMouseEnter={() => {
+                showSearchCard();
+              }}
               // onBlur={() => {
               //   hideSearchCard();
               // }}
