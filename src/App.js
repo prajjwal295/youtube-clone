@@ -14,8 +14,8 @@ import React, { useState } from "react";
 import { Provider, useSelector } from "react-redux";
 import SearchOptions from "./components/SearchOptions";
 import SearchPage from "./components/SearchPage";
-import Channel from "./components/Channel";
-import WatchVideo from "./components/WatchVideo";
+import Channel from "./components/Channel/Channel";
+import WatchVideo from "./components/WatchVideo/WatchVideo";
 
 function App() {
   const isSearchVisible = useSelector((store) => store.cart.searchCard);
@@ -31,7 +31,7 @@ function App() {
         <Header setResults={setResults} />
         <div className="flex  justify-center">
           {isSearchVisible ? (
-            <SearchOptions results={results} setsearch={setsearch}/>
+            <SearchOptions results={results} setsearch={setsearch} />
           ) : (
             <></>
           )}
@@ -39,15 +39,29 @@ function App() {
         <div className="flex">
           <SideNav className="" />
           <Routes>
-            <Route path="/" element={<Body videoId={videoId}/>} />
+            <Route path="/" element={<Body videoId={videoId} />} />
             {isMinimized ? (
-              <Route path="/" element={<Body videoId={videoId}/>} />
+              <Route path="/" element={<Body videoId={videoId} />} />
             ) : (
-              <Route path="watch/:id" element={<WatchVideo setVideoId={setVideoId}/>} />
+              <Route
+                path="watch/:id"
+                element={<WatchVideo setVideoId={setVideoId} />}
+              />
             )}
             <Route path="home" element={<Body />} />
             <Route path="search/:id" element={<SearchPage search={search} />} />
-            <Route path="channel/:id" element={<Channel />} />
+            <Route path="channel/:id" element={<Channel home={true} />} />
+            <Route path="channel/:id/Home" element={<Channel home={true} />} />
+            <Route
+              path="channel/:id/Playlist"
+              element={<Channel home={false} playlist={true} />}
+            />
+            <Route
+              path="channel/:id/Community"
+              element={
+                <Channel home={false} playlist={false} community={true} />
+              }
+            />
           </Routes>
         </div>
       </div>

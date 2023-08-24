@@ -56,7 +56,7 @@ const Header = ({ setResults }) => {
     const options = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": "a9ea4f44demshe17e9d7c9a96b24p15b4bbjsn4a50180d1bfe",
+        "X-RapidAPI-Key": "a9c441efd3mshcf2c42b30558159p190064jsn4689fc18da53",
         "X-RapidAPI-Host": "youtube138.p.rapidapi.com",
       },
     };

@@ -1,6 +1,6 @@
 import React from "react";
 
-const ChannelHomeCard = ({ thumbnail, title, views, publishTime }) => {
+const HomeCard = ({ thumbnail, title, views, publishTime }) => {
   return (
     <div className="p-2 m-2 w-[260px] rounded-lg items-center justify-center">
       <img src={thumbnail} className="w-full rounded-lg" alt="cards" />
@@ -19,4 +19,4 @@ const ChannelHomeCard = ({ thumbnail, title, views, publishTime }) => {
   );
 };
 
-export default ChannelHomeCard;
+export default HomeCard;
