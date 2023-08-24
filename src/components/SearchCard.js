@@ -1,6 +1,7 @@
 import React from "react";
 import { VscVerifiedFilled } from "react-icons/vsc";
 import { BiDotsVerticalRounded } from "react-icons/bi";
+import { Link } from "react-router-dom";
 
 
 const SearchCard = ({
@@ -8,6 +9,7 @@ const SearchCard = ({
   title,
   channelName,
   channellogo,
+  channelId,
   views,
   publishTime,
   description,
@@ -34,6 +36,7 @@ const SearchCard = ({
             {isVerified ? <VscVerifiedFilled className="text-base" /> : <></>}
           </li>
         </ul>
+        <Link to={"/channel/" + channelId}>
         <ul className="flex items-center h-[24px] mt-2  ">
           <li>
             <img
@@ -46,6 +49,7 @@ const SearchCard = ({
             {channelName}
           </li>
         </ul>
+        </Link>
         <li className="mt-4 text-ellipsis line-clamp-1 text-xs text-[rgb(96,96,96)] ">
           {description}
         </li>

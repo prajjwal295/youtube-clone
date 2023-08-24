@@ -5,26 +5,34 @@ import Card from "./Card";
 import { setMinimization } from "../utils/CartSlice";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { homeCacheResults } from "../utils/HomeSlice";
 import { hideSideNav } from "../utils/CartSlice";
 
 const Body = ({ videoId }) => {
   const [result, setResult] = useState("");
 
-    const isMinimized = useSelector((store) => store.cart.minimizePlayer);
+  const isMinimized = useSelector((store) => store.cart.minimizePlayer);
 
   console.log({ videoId });
   const dispatch = useDispatch();
 
-    const handleMinimization = () => {
-      dispatch(setMinimization(false));
-    };
+  const handleMinimization = () => {
+    dispatch(setMinimization(false));
+  };
 
   const handleSideNav = () => {
     dispatch(hideSideNav());
   };
 
+  // const homeCache = useSelector((store) => store.home);
+  // console.log({ homeCache });
+
   useEffect(() => {
-    getApi();
+    // if (homeCache?.homeCache?.Api) {
+    //   setResult(homeCache?.homeCache?.Api);
+    // } else {
+      getApi();
+    // }
   }, []);
 
   const getApi = async () => {
@@ -32,7 +40,7 @@ const Body = ({ videoId }) => {
     const options = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": "a9c441efd3mshcf2c42b30558159p190064jsn4689fc18da53",
+        "X-RapidAPI-Key": "9d79a9aa69msh03255c4ecc93005p175c40jsn2920bf14c407",
         "X-RapidAPI-Host": "youtube138.p.rapidapi.com",
       },
     };
@@ -40,8 +48,8 @@ const Body = ({ videoId }) => {
     try {
       const response = await fetch(url, options);
       const json = await response?.json();
-      // console.log(json);
       setResult(json);
+      // dispatch(homeCacheResults(json));
     } catch (error) {
       console.error(error);
     }
@@ -54,7 +62,6 @@ const Body = ({ videoId }) => {
         {result?.contents?.map((item) => {
           // console.log(item);
           return (
-           
             <Link
               to={"/watch/" + item?.video?.videoId}
               key={item?.video?.videoId}
