@@ -50,13 +50,13 @@ const Header = ({ setResults }) => {
   }, [search]);
 
   const autoComplete = async () => {
-    console.log(search);
+    // console.log(search);
     // console.log(value);
     const url = `https://youtube138.p.rapidapi.com/auto-complete/?q=${search}&hl=en&gl=US`;
     const options = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": "9d79a9aa69msh03255c4ecc93005p175c40jsn2920bf14c407",
+        "X-RapidAPI-Key": "a9c441efd3mshcf2c42b30558159p190064jsn4689fc18da53",
         "X-RapidAPI-Host": "youtube138.p.rapidapi.com",
       },
     };
@@ -76,8 +76,8 @@ const Header = ({ setResults }) => {
   };
 
   return (
-    <div className="flex bg-white items-center justify-between ">
-      <div className="flex flex-[3.5]">
+    <div className="flex bg-white items-center justify-between max-sm:max-w-full  ">
+      <div className="flex flex-[3.5] max-sm:flex-[5]">
         <button onClick={() => handleSidenav()}>
           <RxHamburgerMenu className="text-2xl mx-4" />
         </button>
@@ -89,11 +89,11 @@ const Header = ({ setResults }) => {
           />
         </Link>
       </div>
-      <div className="flex flex-[5]">
+      <div className="flex flex-[5] max-sm:flex-[2]">
         <input
           type="text"
           value={search}
-          className="h-10 w-[550px] rounded-l-full border-2 px-4 "
+          className="h-10 w-[550px] rounded-l-full border-2 px-4 max-sm:hidden"
           placeholder="search"
           onChange={(e) => {
             setSearch(e.target.value);
@@ -105,8 +105,9 @@ const Header = ({ setResults }) => {
             hideSearchCard();
           }}
         />
+    
         <Link to={"/search/" + search}>
-          <button className="rounded-r-full bg-gray-100 border-2  border-l-0 w-16 h-10">
+          <button className="rounded-r-full bg-gray-100 border-2  border-l-0 w-16 h-10 max-sm:border-none max-sm:bg-white max-sm:w-auto ">
             <GoSearch className=" m-auto" />
           </button>
         </Link>
@@ -114,7 +115,7 @@ const Header = ({ setResults }) => {
           <BsFillMicFill className=" m-0  p-0 w-full h-5" />
         </button>
       </div>
-      <div className="flex-[2.5] flex items-center">
+      <div className="flex-[2.5] flex items-center ">
         <BiVideoPlus className="  w-full h-6" />
         <IoIosNotificationsOutline className="w-full h-6" />
       </div>

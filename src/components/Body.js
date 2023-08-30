@@ -40,7 +40,7 @@ const Body = ({ videoId }) => {
     const options = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": "9d79a9aa69msh03255c4ecc93005p175c40jsn2920bf14c407",
+        "X-RapidAPI-Key": "a9c441efd3mshcf2c42b30558159p190064jsn4689fc18da53",
         "X-RapidAPI-Host": "youtube138.p.rapidapi.com",
       },
     };
@@ -58,7 +58,7 @@ const Body = ({ videoId }) => {
   return (
     <div className="cd m-auto relative">
       <ButtonList />
-      <div className=" flex flex-wrap justify-start m-auto w-[1200px]  pt-[24px] ">
+      <div className=" flex flex-wrap justify-start m-auto w-[1200px]  pt-[24px] max-sm:flex-col max-sm:w-[100vw] max-sm:text-white">
         {result?.contents?.map((item) => {
           // console.log(item);
           return (

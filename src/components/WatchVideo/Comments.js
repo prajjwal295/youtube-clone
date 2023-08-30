@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { BiLike, BiDislike } from "react-icons/bi";
 import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 
-
-
 const CommentContainer = ({ data, id }) => {
   const [show, setShow] = useState(false);
 
@@ -43,7 +41,8 @@ const CommentContainer = ({ data, id }) => {
               show ? setShow(false) : setShow(true);
             }}
           >
-            {show ? <BsChevronUp /> : <BsChevronDown />} {stats?.replies} replies
+            {show ? <BsChevronUp /> : <BsChevronDown />} {stats?.replies}{" "}
+            replies
           </button>
         ) : (
           <></>
@@ -101,8 +100,8 @@ const Comments = ({ id, cursor }) => {
             show ? setShow(false) : setShow(true);
           }}
         >
-          {show ? <BsChevronUp />  : <BsChevronDown />}
-          {show ? ("Show Less" ) : ("Show More")}
+          {show ? <BsChevronUp /> : <BsChevronDown />}
+          {show ? "Show Less" : "Show More"}
         </button>
       ) : (
         <></>

@@ -14,7 +14,7 @@ const Home = ({ id }) => {
     const options = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": "9d79a9aa69msh03255c4ecc93005p175c40jsn2920bf14c407",
+        "X-RapidAPI-Key": "a9c441efd3mshcf2c42b30558159p190064jsn4689fc18da53",
         "X-RapidAPI-Host": "youtube138.p.rapidapi.com",
       },
     };
@@ -29,7 +29,7 @@ const Home = ({ id }) => {
     }
   };
   return (
-    <div className="flex flex-wrap items-center mx-auto border-2">
+    <div className="flex flex-wrap items-center mx-auto max-sm:flex-col max-sm:mx-0">
       {searchResult?.contents?.map((item) => {
         return (
           <Link

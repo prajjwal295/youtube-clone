@@ -9,7 +9,6 @@ import { Link } from "react-router-dom";
 const SearchPage = ({ search }) => {
   const [searchResult, setSearchResults] = useState([]);
 
-  
   const dispatch = useDispatch();
 
   const handleSideNav = () => {
@@ -29,7 +28,7 @@ const SearchPage = ({ search }) => {
     const options = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": "9d79a9aa69msh03255c4ecc93005p175c40jsn2920bf14c407",
+        "X-RapidAPI-Key": "a9c441efd3mshcf2c42b30558159p190064jsn4689fc18da53",
         "X-RapidAPI-Host": "youtube138.p.rapidapi.com",
       },
     };
@@ -37,7 +36,7 @@ const SearchPage = ({ search }) => {
     try {
       const response = await fetch(url, options);
       const result = await response.json();
-      // console.log(result);
+      // console.log({ result });
       setSearchResults(result);
     } catch (error) {
       console.error(error);
@@ -51,6 +50,7 @@ const SearchPage = ({ search }) => {
           <Link
             to={"/watch/" + item?.video?.videoId}
             key={item?.video?.videoId}
+            badges={item?.video?.badges[0]}
             onClick={() => {
               handleSideNav();
             }}
@@ -65,6 +65,7 @@ const SearchPage = ({ search }) => {
               views={item?.video?.stats?.views}
               publishTime={item?.video?.publishedTimeText}
               description={item?.video?.descriptionSnippet}
+              badges={item?.video?.badges[0]}
             />
           </Link>
         ) : (

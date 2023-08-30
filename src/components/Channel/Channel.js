@@ -20,7 +20,7 @@ const Channel = ({home , playlist , community}) => {
     const options = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": "9d79a9aa69msh03255c4ecc93005p175c40jsn2920bf14c407",
+        "X-RapidAPI-Key": "a9c441efd3mshcf2c42b30558159p190064jsn4689fc18da53",
         "X-RapidAPI-Host": "youtube138.p.rapidapi.com",
       },
     };
@@ -36,11 +36,14 @@ const Channel = ({home , playlist , community}) => {
   };
 
   return (
-    <div className="w-full ">
-      <div className="w-full">
-        <img src={searchResult?.banner?.desktop[2]?.url} className="w-full" />
+    <div className="w-full max-sm:max-w-[100vh] max-sm:text-white">
+      <div className="w-full max-sm:max-w-[100vh]">
+        <img
+          src={searchResult?.banner?.desktop[2]?.url}
+          className="w-full max-sm:max-w-[100vh]"
+        />
       </div>
-      <div className="mx-20">
+      <div className="mx-20 max-sm:mx-0 ">
         <ChannelCard
           title={searchResult?.title}
           username={searchResult?.username}
@@ -49,7 +52,7 @@ const Channel = ({home , playlist , community}) => {
           channellogo={searchResult?.avatar?.[1]?.url}
         />
         <div className="block h-[48px] m-0 p-0">
-          <ul className="flex w-full h-full border-2 justify-start items-center text-[rgb(139,139,139)] ">
+          <ul className="flex w-full h-full border-b-2 border-black justify-start items-center text-[rgb(139,139,139)] max-sm:overflow-x-scroll">
             <Link to={"/channel/" + id + "/Home"}>
               <l1 className="font-semibold text-md h-10 flex items-center justify-center  w-[150px] hover:text-[black]">
                 HOME
@@ -88,9 +91,27 @@ const Channel = ({home , playlist , community}) => {
           </ul>
         </div>
         <hr />
-        {home ? <div><Home id={id} /> </div> : <></>}
-        {playlist ? <div><Playlist id={id} /> </div> : <></>}
-        {community ? <div><Community id={id} /> </div> : <></>}
+        {home ? (
+          <div>
+            <Home id={id} />{" "}
+          </div>
+        ) : (
+          <></>
+        )}
+        {playlist ? (
+          <div>
+            <Playlist id={id} />{" "}
+          </div>
+        ) : (
+          <></>
+        )}
+        {community ? (
+          <div>
+            <Community id={id} />{" "}
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );

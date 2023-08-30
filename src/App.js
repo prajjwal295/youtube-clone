@@ -18,16 +18,18 @@ import Channel from "./components/Channel/Channel";
 import WatchVideo from "./components/WatchVideo/WatchVideo";
 
 function App() {
+
   const isSearchVisible = useSelector((store) => store.cart.searchCard);
   const isMinimized = useSelector((store) => store.cart.minimizePlayer);
   const [results, setResults] = useState([]);
   const [search, setsearch] = useState("");
   const [videoId, setVideoId] = useState(null);
+  const [badges , setBadges] = useState(null);
 
   console.log(videoId);
   return (
     <BrowserRouter>
-      <div>
+      <div className="max-sm:bg-black">
         <Header setResults={setResults} />
         <div className="flex  justify-center">
           {isSearchVisible ? (
@@ -45,7 +47,7 @@ function App() {
             ) : (
               <Route
                 path="watch/:id"
-                element={<WatchVideo setVideoId={setVideoId} />}
+                element={<WatchVideo setVideoId={setVideoId} badges={"LIVE"}/>}
               />
             )}
             <Route path="home" element={<Body />} />
