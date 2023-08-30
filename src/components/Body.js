@@ -58,7 +58,7 @@ const Body = ({ videoId }) => {
   return (
     <div className="cd m-auto relative">
       <ButtonList />
-      <div className=" flex flex-wrap justify-start m-auto w-[1200px]  pt-[24px] max-sm:flex-col max-sm:w-[100vw] max-sm:text-white">
+      <div className=" flex flex-wrap justify-start m-auto w-[1200px]  pt-[24px] max-md:flex-col max-md:w-[100vw] max-md:text-white">
         {result?.contents?.map((item) => {
           // console.log(item);
           return (

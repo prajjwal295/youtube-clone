@@ -53,10 +53,10 @@ const WatchVideo = ({ setVideoId }) => {
     }
   };
   return (
-    <div className="flex max-sm:flex-col max-sm:max-w-[100vw] max-sm:text-white">
-      <div className="mx-14 py-5 w-[900px] flex-[0.65] max-sm:max-w-[100vw] max-sm:mx-0 ">
+    <div className="flex max-md:flex-col max-md:max-w-[100vw] max-md:text-white">
+      <div className="mx-14 py-5 w-[900px] flex-[0.65] max-md:max-w-[100vw] max-md:mx-0 ">
         <iframe
-          className="w-full h-[500px] max-sm:max-w-[100vw] max-sm:max-h-[240x]"
+          className="w-full h-[500px] max-md:max-w-[100vw] max-md:max-h-[240x]"
           width="560"
           height="315"
           src={`https://www.youtube.com/embed/${id}?autoplay=1&mute=1`}
@@ -66,12 +66,12 @@ const WatchVideo = ({ setVideoId }) => {
           allowFullScreen
         ></iframe>
 
-        <div className="py-2 max-sm:max-w-[100vw] max-sm:my-2 ">
+        <div className="py-2 max-md:max-w-[100vw] max-md:my-2 ">
           <div>
             <h1 className="text-lg font-semibold">{videoDetails?.title}</h1>
           </div>
-          <div className="flex justify-between mt-2 max-sm:max-w-[100vw]">
-            <div className="flex justify-between  max-sm:max-w-[100vw]">
+          <div className="flex justify-between mt-2 max-md:max-w-[100vw]">
+            <div className="flex justify-between  max-md:max-w-[100vw]">
               <Link to={"/channel/" + videoDetails?.author?.channelId}>
                 <img
                   src={videoDetails?.author?.avatar[0]?.url}
@@ -129,7 +129,7 @@ const WatchVideo = ({ setVideoId }) => {
           <div>Ditails</div>
         </div>
         {isVisible ? (
-          <div className="border-2px  bg-[rgb(242,242,242)] rounded-md px-2 max-sm:bg-black">
+          <div className="border-2px  bg-[rgb(242,242,242)] rounded-md px-2 max-md:bg-black">
             <div className="flex justify-between items-center m-2">
               <h1 className="text-xl font-bold">Comments :</h1>
               <RxCross2
@@ -141,7 +141,7 @@ const WatchVideo = ({ setVideoId }) => {
           </div>
         ) : (
           <div
-            className="border-2px  bg-[rgb(242,242,242)] rounded-md h-[64px] px-2 max-sm:bg-black"
+            className="border-2px  bg-[rgb(242,242,242)] rounded-md h-[64px] px-2 max-md:bg-black"
             onClick={() => setIsVisible(true)}
           >
             <div className="flex justify-between items-center m-2">

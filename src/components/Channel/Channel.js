@@ -36,8 +36,8 @@ const Channel = ({home , playlist , community}) => {
   };
 
   return (
-    <div className="w-full max-sm:max-w-[100vh] max-sm:text-white">
-      <div className="w-full max-sm:max-w-[100vh]">
+    <div className="w-full max-md:max-w-[100vh] max-md:text-white">
+      <div className="w-full max-md:max-w-[100vh]">
         <img
           src={searchResult?.banner?.desktop[2]?.url}
           className="w-full max-sm:max-w-[100vh]"

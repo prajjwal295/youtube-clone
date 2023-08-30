@@ -76,8 +76,8 @@ const Header = ({ setResults }) => {
   };
 
   return (
-    <div className="flex bg-white items-center justify-between max-sm:max-w-full  ">
-      <div className="flex flex-[3.5] max-sm:flex-[5]">
+    <div className="flex bg-white items-center justify-between max-md:max-w-[100vww]  max-md:bg-black max-md:text-white ">
+      <div className="flex flex-[3.5] max-md:flex-[5]">
         <button onClick={() => handleSidenav()}>
           <RxHamburgerMenu className="text-2xl mx-4" />
         </button>
@@ -89,11 +89,11 @@ const Header = ({ setResults }) => {
           />
         </Link>
       </div>
-      <div className="flex flex-[5] max-sm:flex-[2]">
+      <div className="flex flex-[5] max-md:flex-[2]">
         <input
           type="text"
           value={search}
-          className="h-10 w-[550px] rounded-l-full border-2 px-4 max-sm:hidden"
+          className="h-10 w-[550px] rounded-l-full border-2 px-4 max-md:hidden"
           placeholder="search"
           onChange={(e) => {
             setSearch(e.target.value);
@@ -105,9 +105,9 @@ const Header = ({ setResults }) => {
             hideSearchCard();
           }}
         />
-    
+
         <Link to={"/search/" + search}>
-          <button className="rounded-r-full bg-gray-100 border-2  border-l-0 w-16 h-10 max-sm:border-none max-sm:bg-white max-sm:w-auto ">
+          <button className="rounded-r-full bg-gray-100 border-2  border-l-0 w-16 h-10 max-md:border-none max-md:bg-white max-md:w-auto ">
             <GoSearch className=" m-auto" />
           </button>
         </Link>

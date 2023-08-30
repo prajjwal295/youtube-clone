@@ -14,7 +14,7 @@ const SideNav = () => {
     return null;
   }
   return (
-    <div className="flex flex-col w-[240px] min-h-[100vh] border-2 p-2">
+    <div className="flex flex-col w-[240px] min-h-[100vh]  p-2">
       <Link to="/home">
         <button className="flex h-[45px] w-full m-1 cursor-pointer rounded-xl bg-[rgb(242,242,242)] items-center font-semibold">
           <GoHome className="text-2xl mr-4" />

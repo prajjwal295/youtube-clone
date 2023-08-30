@@ -2,10 +2,10 @@ import React from "react";
 
 const HomeCard = ({ thumbnail, title, views, publishTime }) => {
   return (
-    <div className="p-2 m-2 w-[260px] rounded-lg items-center justify-center max-sm:max-w-[100vw] max-sm:rounded-none max-sm:px-0 max-sm:mx-0">
+    <div className="p-2 m-2 w-[260px] rounded-lg items-center justify-center max-md:max-w-[100vw] max-md:rounded-none max-md:px-0 max-md:mx-0">
       <img
         src={thumbnail}
-        className="w-full rounded-lg max-sm:rounded-none"
+        className="w-full rounded-lg max-md:rounded-none"
         alt="cards"
       />
       <div className="flex justify-between items-start p-2">

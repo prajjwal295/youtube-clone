@@ -18,13 +18,13 @@ const SearchCard = ({
 }) => {
   return (
     <div
-      className="p-2 ml-2 my-0 w-full flex rounded-lg items-center  border-black max-sm:w-[100vw] max-sm:flex-col"
+      className="p-2 ml-2 my-0 w-full flex rounded-lg items-center  border-black max-md:w-[100vw] max-md:flex-col"
       key={key}
     >
       <div className="relative">
         <img
           src={thumbnail}
-          className="rounded-lg w-[350px] max-sm:w-[100vw] max-sm:rounded-none"
+          className="rounded-lg w-[350px] max-md:w-[100vw] max-md:rounded-none"
           alt="cards"
         />
         {badges === "LIVE" ? (
