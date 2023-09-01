@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 
 import { Link, useParams } from "react-router-dom";
-import ChannelCard from "../ChannelCard";
+import ChannelCard from "./ChannelCard";
 import Playlist from "./Playlist";
 import Home from "./Home";
 import Community from "./Community";
 
-
-const Channel = ({home , playlist , community}) => {
+const Channel = ({ home, playlist, community }) => {
   const { id } = useParams();
   const [searchResult, setSearchResults] = useState([]);
 
@@ -36,36 +35,26 @@ const Channel = ({home , playlist , community}) => {
   };
 
   return (
-    <div className="w-full max-md:max-w-[100vh] max-md:text-white">
-      <div className="w-full max-md:max-w-[100vh]">
+    <div className="w-full max-md:max-w-[100vw] max-md:text-white">
+      <div className="w-full max-md:w-[100vw]">
         <img
           src={searchResult?.banner?.desktop[2]?.url}
-          className="w-full max-sm:max-w-[100vh]"
+          className="w-full max-sm:w-[100vw]"
         />
       </div>
-      <div className="mx-20 max-sm:mx-0 ">
+      <div className=" max-md:mx-0 ">
         <ChannelCard
           title={searchResult?.title}
           username={searchResult?.username}
           description={searchResult?.description}
           substext={searchResult?.stats?.subscribersText}
-          channellogo={searchResult?.avatar?.[1]?.url}
+          channellogo={searchResult?.avatar?.[0]?.url}
         />
         <div className="block h-[48px] m-0 p-0">
-          <ul className="flex w-full h-full border-b-2 border-black justify-start items-center text-[rgb(139,139,139)] max-sm:overflow-x-scroll">
+          <ul className="flex w-[100vw] h-full border-b-2 border-black justify-start items-center text-[rgb(139,139,139)]">
             <Link to={"/channel/" + id + "/Home"}>
               <l1 className="font-semibold text-md h-10 flex items-center justify-center  w-[150px] hover:text-[black]">
                 HOME
-              </l1>
-            </Link>
-            <Link to={"/channel/" + id + "/Home"}>
-              <l1 className="w-[150px] font-semibold text-md h-10 flex items-center justify-center hover:text-[black] ">
-                VIDEOS
-              </l1>
-            </Link>
-            <Link to={"/channel/" + id + "/Home"}>
-              <l1 className="font-semibold text-md h-10 flex items-center justify-center  w-[150px] hover:text-[black]">
-                SHORTS
               </l1>
             </Link>
             <Link to={"/channel/" + id + "/Playlist"}>
@@ -73,21 +62,11 @@ const Channel = ({home , playlist , community}) => {
                 PLAYLISTS
               </l1>
             </Link>
-            <Link to={"/channel/" + id + "/Community"}>
+            {/* <Link to={"/channel/" + id + "/Community"}>
               <l1 className="font-semibold text-md h-10 flex items-center justify-center  w-[150px] hover:text-[black]">
                 COMMUNITY
               </l1>
-            </Link>
-            <Link to={"/channel/" + id + "/Home"}>
-              <l1 className="font-semibold text-md h-10 flex items-center justify-center  w-[150px] hover:text-[black]">
-                CHANNEL
-              </l1>
-            </Link>
-            <Link to={"/channel/" + id + "/Home"}>
-              <l1 className="font-semibold text-md h-10 flex items-center justify-center  w-[150px] hover:text-[black]">
-                ABOUT
-              </l1>
-            </Link>
+            </Link> */}
           </ul>
         </div>
         <hr />

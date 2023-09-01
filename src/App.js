@@ -28,7 +28,7 @@ function App() {
   console.log(videoId);
   return (
     <BrowserRouter>
-      <div className="max-md:bg-black">
+      <div className="max-md:bg-black max-md:w-[100vw] ">
         <Header setResults={setResults} />
         <div className="flex justify-center">
           {isSearchVisible ? (

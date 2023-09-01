@@ -29,7 +29,7 @@ const Home = ({ id }) => {
     }
   };
   return (
-    <div className="flex flex-wrap items-center mx-auto max-md:flex-col max-md:mx-0">
+    <div className="flex flex-wrap items-center mx-auto max-md:flex-col max-md:mx-0 max-md:flex-nowrap ">
       {searchResult?.contents?.map((item) => {
         return (
           <Link

@@ -3,7 +3,7 @@ import SearchCard from "./SearchCard";
 import { useDispatch } from "react-redux";
 import { hideSideNav } from "../utils/CartSlice";
 import { useParams } from "react-router-dom";
-import ChannelCard from "./ChannelCard";
+import ChannelCard from "./Channel/ChannelCard";
 import { Link } from "react-router-dom";
 
 const SearchPage = ({ search }) => {

@@ -8,13 +8,13 @@ import { useDispatch } from "react-redux";
 import { homeCacheResults } from "../utils/HomeSlice";
 import { hideSideNav } from "../utils/CartSlice";
 
-
 const Body = ({ videoId }) => {
   const [result, setResult] = useState("");
+  const [show, setShow] = useState(false);
 
   const isMinimized = useSelector((store) => store.cart.minimizePlayer);
 
-  console.log({ videoId });
+  // console.log({ videoId });
   const dispatch = useDispatch();
 
   const handleMinimization = () => {
@@ -32,12 +32,12 @@ const Body = ({ videoId }) => {
     // if (homeCache?.homeCache?.Api) {
     //   setResult(homeCache?.homeCache?.Api);
     // } else {
-      getApi();
+    getApi();
     // }
   }, []);
 
   const getApi = async () => {
-    const url = "https://youtube138.p.rapidapi.com/home/?hl=en&gl=US";
+    const url = `https://youtube138.p.rapidapi.com/home/?hl=en&gl=US`;
     const options = {
       method: "GET",
       headers: {
@@ -50,6 +50,7 @@ const Body = ({ videoId }) => {
       const response = await fetch(url, options);
       const json = await response?.json();
       setResult(json);
+      console.log({ json });
       // dispatch(homeCacheResults(json));
     } catch (error) {
       console.error(error);
@@ -57,9 +58,9 @@ const Body = ({ videoId }) => {
   };
 
   return (
-    <div className="cd m-auto relative">
+    <div className=" m-auto relative  max-md:mx-0 max-md:mb-20 max-md:[100vw] max-md:text-white">
       <ButtonList />
-      <div className=" flex flex-wrap justify-start m-auto w-[1200px]  pt-[24px] max-md:flex-col max-md:w-[100vw] max-md:text-white">
+      <div className=" flex flex-wrap justify-start m-auto w-[1200px] pt-[24px] max-md:flex-col max-md:w-[100vw] max-md:text-white max-md:pt-0 max-md:mb-20">
         {result?.contents?.map((item) => {
           // console.log(item);
           return (
@@ -85,7 +86,21 @@ const Body = ({ videoId }) => {
           );
         })}
       </div>
-      {videoId && (
+      {/* {result?.cursorNext ? (
+        <button
+          className="bg-[rgb(96,96,96)] w-32 flex m-auto justify-center rounded-md"
+          onClick={() => {
+            setShow(true);
+          }}
+        >
+          Load More
+        </button>
+      ) : (
+        <></>
+      )}
+
+      {show ? <Body cursor={result?.cursorNext} /> : <></>} */}
+      {/* {videoId && (
         <div className="fixed bottom-2 right-2 rounded-md">
           <iframe
             className="h-[250px] w-[370px] rounded-md"
@@ -98,7 +113,7 @@ const Body = ({ videoId }) => {
             allowFullScreen
           ></iframe>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
