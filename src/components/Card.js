@@ -17,7 +17,7 @@ const Card = ({
 
   return (
     <div
-      className="p-2 m-2 w-[350px] rounded-lg items-center justify-center max-md:w-[100vw] max-md:rounded-none max-md:px-0 max-md:mx-0 "
+      className="p-2 m-2 w-[350px] rounded-lg items-center justify-center max-md:w-full max-md:rounded-none max-md:px-0 max-md:mx-0"
       key={key}
     >
       <img
