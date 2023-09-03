@@ -16,12 +16,12 @@ const Card = ({
 }) => {
   return (
     <div
-      className="p-2 m-2 w-[350px] rounded-lg items-center justify-center max-md:w-[100vw] max-md:rounded-none max-md:px-0 max-md:m-0 "
+      className="p-2 m-2 w-[420px] rounded-lg items-center justify-center max-md:w-[100vw] max-md:rounded-none max-md:px-0 max-md:m-0 "
       key={key}
     >
       <img
         src={thumbnail}
-        className="w-full rounded-lg max-md:rounded-none bg-cover"
+        className="w-full h-[230px] border-20 border-black rounded-lg max-md:rounded-none relative bg-cover"
         alt="cards"
       />
 

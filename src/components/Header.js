@@ -6,18 +6,27 @@ import { GoSearch } from "react-icons/go";
 import { BsFillMicFill } from "react-icons/bs";
 import { BsArrowLeftShort } from "react-icons/bs";
 import { BiVideoPlus } from "react-icons/bi";
+import { BsSun } from "react-icons/bs";
+import { BsMoon } from "react-icons/bs";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { disableSearchCard, enableSearchCard } from "../utils/CartSlice";
 import { setSideNav } from "../utils/CartSlice";
 import { cacheResults } from "../utils/SearchSlice";
 import logo from "../config/logo.png";
+import { setTheme } from "../utils/HomeSlice";
 // import { SiYoutubetv } from "react-icons/si";
 
 const Header = ({ setResults }) => {
+  const mdWidth = 768;
+  const [screenSize, setScreen] = useState(window.innerWidth);
   const dispatch = useDispatch();
   const [bar, showBar] = useState(false);
-  // const searchValue = useSelector((store)=>store.cart.searchValue);
+  window.onresize = function (event) {
+    setScreen(window.innerWidth);
+  };
+
+  const dark = useSelector((store) => store.home.isDark);
 
   const handleSidenav = () => {
     dispatch(setSideNav());
@@ -78,7 +87,7 @@ const Header = ({ setResults }) => {
     }
   };
 
-  return bar ? (
+  return bar && screenSize <= mdWidth ? (
     <div className="w-full">
       <div className="px-4 py-2 flex text-white items-center justify-evenly border-2">
         <button
@@ -92,7 +101,7 @@ const Header = ({ setResults }) => {
         <input
           type="text"
           value={search}
-          className="h-6 w-[80vw] rounded-full px-4 bg-gray-700"
+          className={`h-6 w-[80vw] rounded-full px-4 ${dark ? "bg-gray-700 text-white" : "bg-white text-black"}`}
           placeholder="search"
           onChange={(e) => {
             setSearch(e.target.value);
@@ -113,7 +122,7 @@ const Header = ({ setResults }) => {
       </div>
     </div>
   ) : (
-    <div className="flex bg-white items-center justify-between max-md:max-w-[100vw]  max-md:bg-black max-md:text-white border-b-2">
+    <div className={`flex bg-white items-center justify-between max-md:max-w-[100vw] border-b-2 ${dark ? "bg-black text-white" : "bg-white text-black"}`}>
       <div className="flex">
         <button onClick={() => handleSidenav()}>
           <RxHamburgerMenu className="text-2xl mx-4" />
@@ -126,7 +135,7 @@ const Header = ({ setResults }) => {
         <input
           type="text"
           value={search}
-          className="h-10 w-[550px] rounded-l-full border-2 px-4 max-md:hidden"
+          className={`h-10 w-[550px] rounded-l-full border-2 px-4 max-md:hidden ${dark ? "bg-gray-700 text-white" : "bg-white text-black"}`}
           placeholder="search"
           onChange={(e) => {
             setSearch(e.target.value);
@@ -141,7 +150,7 @@ const Header = ({ setResults }) => {
 
         <Link to={"/search/" + search}>
           <button
-            className="rounded-r-full bg-gray-100 border-2  border-l-0 w-16 h-10 max-md:rounded-full max-md:w-10 max-md:bg-black max-md:border-0"
+            className={`rounded-r-full bg-gray-100 border-2  border-l-0 w-16 h-10 max-md:rounded-full max-md:w-10 max-md:border-0 ${dark ? "bg-black text-white" : "bg-white text-black"}`}
             onClick={() => {
               showBar(true);
             }}
@@ -149,6 +158,25 @@ const Header = ({ setResults }) => {
             <GoSearch className="m-auto" />
           </button>
         </Link>
+      </div>
+      <div className="pr-5">
+        {dark ? (
+          <button
+            onClick={() => {
+              dispatch(setTheme(false));
+            }}
+          >
+            <BsSun />
+          </button>
+        ) : (
+          <button
+            onClick={() => {
+              dispatch(setTheme(true));
+            }}
+          >
+            <BsMoon />
+          </button>
+        )}
       </div>
     </div>
   );

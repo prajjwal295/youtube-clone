@@ -28,7 +28,7 @@ const ButtonList = () => {
   };
   return (
     <div
-      className="flex space-x-2 overflow-x-scroll line-clamp-1"
+      className="flex space-x-2 touch-pan-y overflow-x-scroll whitespace-nowrap line-clamp-1"
       style={{ WebkitScrollbar: "none" }}
     >
       {category?.items?.map((item) => (

@@ -5,6 +5,7 @@ const HomeSlice = createSlice({
   initialState: {
     Api : {},
     category : null,
+    isDark : true,
   },
   reducers: {
     homeCacheResults: (state, action) => {
@@ -12,10 +13,13 @@ const HomeSlice = createSlice({
     },
     filterCategory : (state,action)=>{
       state.category = action.payload;
+    },
+    setTheme : (state,action) =>{
+      state.isDark  = action.payload;
     }
   },
 });
 
-export const { homeCacheResults, filterCategory } = HomeSlice.actions;
+export const { homeCacheResults, filterCategory ,setTheme} = HomeSlice.actions;
 
 export default HomeSlice.reducer;

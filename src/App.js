@@ -24,11 +24,12 @@ function App() {
   const [search, setsearch] = useState("");
   const [videoId, setVideoId] = useState(null);
   const [badges, setBadges] = useState(null);
+  const dark = useSelector(store=>store.home.isDark);
 
   console.log(videoId);
   return (
     <BrowserRouter>
-      <div className="max-md:bg-black max-md:w-[100vw] ">
+      <div className={` max-md:w-[100vw] ${dark ? "bg-black text-white" : "bg-white text-black"}`}>
         <Header setResults={setResults} />
         <div className="flex justify-center">
           {isSearchVisible ? (

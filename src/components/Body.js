@@ -14,7 +14,7 @@ const Body = ({ videoId }) => {
   const [result, setResult] = useState("");
   const [show, setShow] = useState(false);
 
-  const filter = useSelector(store  =>store.home.category)
+  const filter = useSelector((store) => store.home.category);
 
   const isMinimized = useSelector((store) => store.cart.minimizePlayer);
 
@@ -38,7 +38,7 @@ const Body = ({ videoId }) => {
     // } else {
     getApi();
     // }
-  }, []);
+  }, [filter]);
 
   const getApi = async () => {
     const url = `https://youtube138.p.rapidapi.com/home/?hl=en&gl=US`;
@@ -52,7 +52,7 @@ const Body = ({ videoId }) => {
 
     try {
       const response = await fetch(
-        `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&videoCategoryId=1&maxResults=25&regionCode=IN&key=${API_KEY}`
+        `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&videoCategoryId=${filter}&maxResults=25&regionCode=IN&key=${API_KEY}`
       );
       const json = await response?.json();
       setResult(json);
@@ -68,7 +68,7 @@ const Body = ({ videoId }) => {
       <div className="w-full">
         <ButtonList />
       </div>
-      <div className=" flex flex-wrap justify-start m-auto w-[1200px] pt-[24px] max-md:flex-col max-md:w-[100vw] max-md:text-white max-md:pt-0 max-md:mb-20">
+      <div className="flex flex-wrap justify-start  w-full pt-[24px] max-md:flex-col max-md:w-[100vw] max-md:text-white max-md:pt-0 max-md:mb-20 border-2">
         {result ? (
           result?.items?.map((item) => {
             // console.log(item);
