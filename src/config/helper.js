@@ -178,6 +178,8 @@ export function generate() {
  return nameList[Math.floor(Math.random() * nameList.length)];
 };
 
+export const API_KEY = "AIzaSyC4LxCaMxajZNgOymXIr_V2Q0d9u5jFk_g";
+
 
 export const makeid = (length) => {
     let result = "";

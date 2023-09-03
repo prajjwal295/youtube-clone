@@ -40,15 +40,11 @@ function App() {
         <div className="flex max-md:block max-md:relative">
           <SideNav className="max-md:absolute" />
           <Routes>
-            <Route path="/" element={<Body videoId={videoId} />} />
-            {isMinimized ? (
-              <Route path="/" element={<Body videoId={videoId} />} />
-            ) : (
-              <Route
-                path="watch/:id"
-                element={<WatchVideo setVideoId={setVideoId} badges={"LIVE"} />}
-              />
-            )}
+            <Route path="/" element={<Body />} />
+            <Route
+              path="watch/:id"
+              element={<WatchVideo setVideoId={setVideoId} badges={"LIVE"} />}
+            />
             <Route path="home" element={<Body />} />
             <Route path="search/:id" element={<SearchPage search={search} />} />
             <Route path="channel/:id" element={<Channel home={true} />} />

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { GoSearch } from "react-icons/go";
 import { BsFillMicFill } from "react-icons/bs";
+import { BsArrowLeftShort } from "react-icons/bs";
 import { BiVideoPlus } from "react-icons/bi";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,6 +16,7 @@ import logo from "../config/logo.png";
 
 const Header = ({ setResults }) => {
   const dispatch = useDispatch();
+  const [bar, showBar] = useState(false);
   // const searchValue = useSelector((store)=>store.cart.searchValue);
 
   const handleSidenav = () => {
@@ -76,7 +78,41 @@ const Header = ({ setResults }) => {
     }
   };
 
-  return (
+  return bar ? (
+    <div className="w-full">
+      <div className="px-4 py-2 flex text-white items-center justify-evenly border-2">
+        <button
+          className="rounded-full border-0   h-10  w-10 "
+          onClick={() => {
+            showBar(false);
+          }}
+        >
+          <BsArrowLeftShort className="m-auto text-xl" />
+        </button>
+        <input
+          type="text"
+          value={search}
+          className="h-6 w-[80vw] rounded-full px-4 bg-gray-700"
+          placeholder="search"
+          onChange={(e) => {
+            setSearch(e.target.value);
+          }}
+          onFocus={() => {
+            showSearchCard();
+          }}
+          onBlur={() => {
+            hideSearchCard();
+          }}
+        />
+
+        <Link to={"/search/" + search}>
+          <button className="rounded-full border-0   h-10  w-10 ">
+            <GoSearch className="m-auto" />
+          </button>
+        </Link>
+      </div>
+    </div>
+  ) : (
     <div className="flex bg-white items-center justify-between max-md:max-w-[100vw]  max-md:bg-black max-md:text-white border-b-2">
       <div className="flex">
         <button onClick={() => handleSidenav()}>
@@ -104,7 +140,12 @@ const Header = ({ setResults }) => {
         />
 
         <Link to={"/search/" + search}>
-          <button className="rounded-r-full bg-gray-100 border-2  border-l-0 w-16 h-10 max-md:rounded-full max-md:w-10 max-md:bg-black max-md:border-0">
+          <button
+            className="rounded-r-full bg-gray-100 border-2  border-l-0 w-16 h-10 max-md:rounded-full max-md:w-10 max-md:bg-black max-md:border-0"
+            onClick={() => {
+              showBar(true);
+            }}
+          >
             <GoSearch className="m-auto" />
           </button>
         </Link>
