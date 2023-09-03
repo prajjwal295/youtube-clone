@@ -88,10 +88,14 @@ const Header = ({ setResults }) => {
   };
 
   return bar && screenSize <= mdWidth ? (
-    <div className="w-full">
-      <div className="px-4 py-2 flex text-white items-center justify-evenly border-2">
+    <div
+      className={`w-full h-16 ${
+        dark ? "bg-black text-white" : "bg-white text-black"
+      }`}
+    >
+      <div className={`px-4 py-2 flex items-center justify-evenly `}>
         <button
-          className="rounded-full border-0   h-10  w-10 "
+          className="rounded-full h-10  w-10 "
           onClick={() => {
             showBar(false);
           }}
@@ -101,42 +105,10 @@ const Header = ({ setResults }) => {
         <input
           type="text"
           value={search}
-          className={`h-6 w-[80vw] rounded-full px-4 ${dark ? "bg-gray-700 text-white" : "bg-white text-black"}`}
-          placeholder="search"
-          onChange={(e) => {
-            setSearch(e.target.value);
-          }}
-          onFocus={() => {
-            showSearchCard();
-          }}
-          onBlur={() => {
-            hideSearchCard();
-          }}
-        />
-
-        <Link to={"/search/" + search}>
-          <button className="rounded-full border-0   h-10  w-10 ">
-            <GoSearch className="m-auto" />
-          </button>
-        </Link>
-      </div>
-    </div>
-  ) : (
-    <div className={`flex bg-white items-center justify-between max-md:max-w-[100vw] border-b-2 ${dark ? "bg-black text-white" : "bg-white text-black"}`}>
-      <div className="flex">
-        <button onClick={() => handleSidenav()}>
-          <RxHamburgerMenu className="text-2xl mx-4" />
-        </button>
-        <Link to="/">
-          <img src={logo} alt="logo" className="h-16 p-5" />
-        </Link>
-      </div>
-      <div className="flex">
-        <input
-          type="text"
-          value={search}
-          className={`h-10 w-[550px] rounded-l-full border-2 px-4 max-md:hidden ${dark ? "bg-gray-700 text-white" : "bg-white text-black"}`}
-          placeholder="search"
+          className={`h-6 w-[80vw] rounded-full px-4 ${
+            dark ? "bg-gray-700 text-white" : "bg-white text-black"
+          }`}
+          placeholder="Search"
           onChange={(e) => {
             setSearch(e.target.value);
           }}
@@ -150,7 +122,53 @@ const Header = ({ setResults }) => {
 
         <Link to={"/search/" + search}>
           <button
-            className={`rounded-r-full bg-gray-100 border-2  border-l-0 w-16 h-10 max-md:rounded-full max-md:w-10 max-md:border-0 ${dark ? "bg-black text-white" : "bg-white text-black"}`}
+            className={`rounded-full  h-10  w-10 ${
+              dark ? "bg-black text-white" : "bg-white text-black"
+            }`}
+          >
+            <GoSearch className="m-auto" />
+          </button>
+        </Link>
+      </div>
+    </div>
+  ) : (
+    <div
+      className={`flex h-16  items-center justify-between max-md:max-w-[100vw] ${
+        dark ? "bg-black text-white" : "bg-white text-black"
+      }`}
+    >
+      <div className="flex">
+        <button onClick={() => handleSidenav()}>
+          <RxHamburgerMenu className="text-2xl mx-4" />
+        </button>
+        <Link to="/">
+          <img src={logo} alt="logo" className="h-16 p-5" />
+        </Link>
+      </div>
+      <div className="flex">
+        <input
+          type="text"
+          value={search}
+          className={`h-10 w-[550px] rounded-l-full  px-4 max-md:hidden border-2 ${
+            dark ? "bg-gray-700 text-white" : "bg-white text-black"
+          }`}
+          placeholder="Search"
+          onChange={(e) => {
+            setSearch(e.target.value);
+          }}
+          onFocus={() => {
+            showSearchCard();
+          }}
+          onBlur={() => {
+            hideSearchCard();
+          }}
+        />
+
+        <Link to={"/search/" + search}>
+          <button
+            className={`rounded-r-full  border-2  border-l-0 w-16 h-10 max-md:rounded-full max-md:w-10 max-md:border-0 ${
+              dark ? "bg-black " : "bg-gray-100"
+            }`}
             onClick={() => {
               showBar(true);
             }}
@@ -159,7 +177,7 @@ const Header = ({ setResults }) => {
           </button>
         </Link>
       </div>
-      <div className="pr-5">
+      <div className="pr-10">
         {dark ? (
           <button
             onClick={() => {
