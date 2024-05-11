@@ -28,7 +28,7 @@ const SearchPage = ({ search }) => {
     const options = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": "a9c441efd3mshcf2c42b30558159p190064jsn4689fc18da53",
+        "X-RapidAPI-Key": "762add6099msha41e68e8366a90ap135b65jsnd61ae5b350c2",
         "X-RapidAPI-Host": "youtube138.p.rapidapi.com",
       },
     };
@@ -43,8 +43,8 @@ const SearchPage = ({ search }) => {
     }
   };
   return (
-    <div className="flex flex-col ml-12 ">
-      <div>FilterOptions</div>
+    <div className="flex flex-col ml-12 max-md:ml-0 ">
+      {/* <div>FilterOptions</div> */}
       {searchResult?.contents?.map((item) => {
         return item?.type === "video" ? (
           <Link

@@ -1,5 +1,5 @@
 import React, { useState , useEffect} from 'react'
-import SearchCard from '../SearchCard';
+import VideoRelatedCard from "./VideoRelatedCard";
 import { useDispatch } from 'react-redux';
 import { hideSideNav } from '../../utils/CartSlice';
 import { Link } from 'react-router-dom';
@@ -26,7 +26,7 @@ const VideoRelatedContent = ({id}) => {
          method: "GET",
          headers: {
            "X-RapidAPI-Key":
-             "9d79a9aa69msh03255c4ecc93005p175c40jsn2920bf14c407",
+             "762add6099msha41e68e8366a90ap135b65jsnd61ae5b350c2",
            "X-RapidAPI-Host": "youtube138.p.rapidapi.com",
          },
        };
@@ -51,7 +51,7 @@ const VideoRelatedContent = ({id}) => {
               handleSideNav();
             }}
           >
-            <SearchCard
+            <VideoRelatedCard
               thumbnail={item?.video?.thumbnails[0]?.url}
               title={item?.video?.title}
               channelName={item?.video?.author?.title}

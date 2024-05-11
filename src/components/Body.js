@@ -45,18 +45,20 @@ const Body = ({ videoId }) => {
     const options = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": "a9c441efd3mshcf2c42b30558159p190064jsn4689fc18da53",
+        "X-RapidAPI-Key": "762add6099msha41e68e8366a90ap135b65jsnd61ae5b350c2",
         "X-RapidAPI-Host": "youtube138.p.rapidapi.com",
       },
     };
 
     try {
       const response = await fetch(
-        `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&videoCategoryId=${filter}&maxResults=25&regionCode=IN&key=${API_KEY}`
+        `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular${
+          filter ? `&videoCategoryId=${filter}` : ""
+        }&maxResults=25&regionCode=IN&key=${API_KEY}`
       );
       const json = await response?.json();
       setResult(json);
-      console.log({ json });
+      // console.log({ json });
       // dispatch(homeCacheResults(json));
     } catch (error) {
       console.error(error);
@@ -68,13 +70,13 @@ const Body = ({ videoId }) => {
       <div className="w-full">
         <ButtonList />
       </div>
-      <div className="flex flex-wrap justify-start  w-full pt-[24px] max-md:flex-col max-md:w-[100vw] max-md:text-white max-md:pt-0 max-md:mb-20 border-2">
+      <div className="flex flex-wrap justify-start  w-full pt-[24px] max-md:flex-col max-md:w-[100vw] max-md:text-white max-md:pt-0 max-md:mb-20">
         {result ? (
           result?.items?.map((item) => {
             // console.log(item);
             return (
               <Link
-                to={"/watch/" + item?.video?.videoId}
+                to={"/watch/" + item?.id}
                 key={item?.videoId}
                 onClick={() => {
                   handleSideNav();
@@ -82,7 +84,7 @@ const Body = ({ videoId }) => {
                 }}
               >
                 <Card
-                  thumbnail={item?.snippet?.thumbnails?.standard?.url}
+                  thumbnail={item?.snippet?.thumbnails?.medium?.url}
                   title={item?.snippet?.title}
                   channelName={item?.snippet?.channelTitle}
                   channelId={item?.snippet?.channelId}

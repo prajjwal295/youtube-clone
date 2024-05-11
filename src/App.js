@@ -24,12 +24,16 @@ function App() {
   const [search, setsearch] = useState("");
   const [videoId, setVideoId] = useState(null);
   const [badges, setBadges] = useState(null);
-  const dark = useSelector(store=>store.home.isDark);
+  const dark = useSelector((store) => store.home.isDark);
 
   console.log(videoId);
   return (
     <BrowserRouter>
-      <div className={` max-md:w-[100vw] ${dark ? "bg-black text-white" : "bg-white text-black"}`}>
+      <div
+        className={` max-md:w-[100vw] min-h-[100vh] ${
+          dark ? "bg-black text-white" : "bg-white text-black"
+        }`}
+      >
         <Header setResults={setResults} />
         <div className="flex justify-center">
           {isSearchVisible ? (
@@ -38,9 +42,12 @@ function App() {
             <></>
           )}
         </div>
-        <div className="flex max-md:block max-md:relative">
-          <SideNav className="max-md:absolute" />
+        <div className="flex max-md:relative">
+          <div className="mr-5 max-md:mr-0">
+            <SideNav className="max-md:absolute" />
+          </div>
           <Routes>
+            <Route path="" element={<Body />} />
             <Route path="/" element={<Body />} />
             <Route
               path="watch/:id"

@@ -8,15 +8,15 @@ const ChannelCard = ({
   channellogo,
 }) => {
   return (
-    <div className="p-2 ml-2 my-0 flex items-center max-md:flex-col max-md:my-2 max-md:ml-0">
-      <div className="w-[500px] ">
+    <div className="p-2 ml-2 my-0 flex items-center ">
+      <div className="w-[25em] ">
         <img
           src={channellogo}
           alt="logo"
           className="rounded-full m-auto border-2"
         />
       </div>
-      <ul className="flex flex-col h-full w-full ml-2 p-8 max-md:items-center max-md:p-0">
+      <ul className="flex flex-col h-full w-full ml-2 p-8">
         <li className="font-semibold overflow-hidden text-ellipsis line-clamp-2 text-xl mb-2">
           {title}
         </li>

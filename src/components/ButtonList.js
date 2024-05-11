@@ -7,6 +7,7 @@ const ButtonList = () => {
   const [category, setCategory] = useState("");
   const dispatch = useDispatch();
   const filter = useSelector((store) => store.home.category);
+  const dark = useSelector((store) => store.home.isDark);
   useEffect(() => {
     getVideoCategory();
   }, []);
@@ -28,16 +29,23 @@ const ButtonList = () => {
   };
   return (
     <div
-      className="flex space-x-2 touch-pan-y overflow-x-scroll whitespace-nowrap line-clamp-1"
+      className="flex space-x-2 touch-pan-x overflow-x-scroll whitespace-nowrap line-clamp-1"
       style={{ WebkitScrollbar: "none" }}
     >
+      
       {category?.items?.map((item) => (
         <label
           key={item?.id}
-          className={`flex space-x-2 w-full h-10 items-center justify-center ${
+          className={`flex space-x-2 w-full h-8 font-medium items-center justify-center ${
             item?.id === filter
-              ? "bg-red-500 text-white font-semibold rounded-xl p-2 m-2 border-2 border-red-500 cursor-pointer"
-              : "bg-white text-black font-semibold rounded-xl p-2 m-2 border-2 border-gray-300 cursor-pointer"
+              ? ` text-sm rounded-md p-2 m-2 cursor-pointer ${
+                  dark ? "bg-white text-black" : "bg-black text-white"
+                }`
+              : ` text-sm rounded-md p-2 m-2  cursor-pointer ${
+                  dark
+                    ? "bg-[rgb(39,39,39)] text-white"
+                    : "bg-[rgb(242,242,242)] text-black"
+                }`
           }`}
         >
           <input

@@ -68,7 +68,7 @@ const Header = ({ setResults }) => {
     const options = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": "a9c441efd3mshcf2c42b30558159p190064jsn4689fc18da53",
+        "X-RapidAPI-Key": "762add6099msha41e68e8366a90ap135b65jsnd61ae5b350c2",
         "X-RapidAPI-Host": "youtube138.p.rapidapi.com",
       },
     };
@@ -105,8 +105,10 @@ const Header = ({ setResults }) => {
         <input
           type="text"
           value={search}
-          className={`h-6 w-[80vw] rounded-full px-4 ${
-            dark ? "bg-gray-700 text-white" : "bg-white text-black"
+          className={`h-8 w-[80vw] rounded-full px-4 border  ${
+            dark
+              ? "bg-black text-white border-[rgb(39,39,39)]"
+              : "bg-white text-black border-[rgb(242,242,242)]"
           }`}
           placeholder="Search"
           onChange={(e) => {
@@ -122,8 +124,8 @@ const Header = ({ setResults }) => {
 
         <Link to={"/search/" + search}>
           <button
-            className={`rounded-full  h-10  w-10 ${
-              dark ? "bg-black text-white" : "bg-white text-black"
+            className={`ml-4 w-10 h-10 flex item-center justify-center rounded-full ${
+              dark ? "bg-[rgb(39,39,39)]" : "bg-[rgb(242,242,242)]"
             }`}
           >
             <GoSearch className="m-auto" />
@@ -150,7 +152,9 @@ const Header = ({ setResults }) => {
           type="text"
           value={search}
           className={`h-10 w-[550px] rounded-l-full  px-4 max-md:hidden border-2 ${
-            dark ? "bg-gray-700 text-white" : "bg-white text-black"
+            dark
+              ? "bg-black text-white border-[rgb(39,39,39)]"
+              : "bg-white text-black"
           }`}
           placeholder="Search"
           onChange={(e) => {
@@ -166,8 +170,8 @@ const Header = ({ setResults }) => {
 
         <Link to={"/search/" + search}>
           <button
-            className={`rounded-r-full  border-2  border-l-0 w-16 h-10 max-md:rounded-full max-md:w-10 max-md:border-0 ${
-              dark ? "bg-black " : "bg-gray-100"
+            className={`rounded-r-full  border border-l-0 w-16 h-10 max-md:rounded-full max-md:w-10 max-md:border-0 ${
+              dark ? "bg-[rgb(39,39,39)] border-[rgb(39,39,39)]" : "bg-gray-100"
             }`}
             onClick={() => {
               showBar(true);
@@ -177,7 +181,11 @@ const Header = ({ setResults }) => {
           </button>
         </Link>
       </div>
-      <div className="pr-10">
+      <div
+        className={`mr-10 w-10 h-10 flex item-center justify-center rounded-full ${
+          dark ? "bg-[rgb(39,39,39)]" : "bg-[rgb(242,242,242)]"
+        }`}
+      >
         {dark ? (
           <button
             onClick={() => {

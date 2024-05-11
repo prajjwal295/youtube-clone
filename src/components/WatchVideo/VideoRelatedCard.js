@@ -3,7 +3,7 @@ import { VscVerifiedFilled } from "react-icons/vsc";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
-const SearchCard = ({
+const VideoRelatedCard = ({
   thumbnail,
   title,
   channelName,
@@ -18,25 +18,25 @@ const SearchCard = ({
 }) => {
   return (
     <div
-      className="pb-2  ml-2 my-0 w-full flex rounded-lg items-center"
+      className="ml-2 my-0 w-full flex rounded-lg items-center max-md:w-[100vw] max-md:flex-col"
       key={key}
     >
       <div className="relative">
         <img
           src={thumbnail}
-          className="rounded-lg w-[350px] "
+          className="rounded-lg w-[350px] max-md:w-[100vw] max-md:rounded-none"
           alt="cards"
         />
         {badges === "LIVE" ? (
           <h1 className="top-2 left-2 absolute">🔴</h1>
         ) : null}
       </div>
-      <ul className="flex flex-col  h-full  border-black w-full ml-4 p-1">
-        <li className="font-medium overflow-hidden text-ellipsis line-clamp-2 text-lg mb-2">
+      <ul className="flex flex-col items-start  border-black h-full w-full ml-1 p-1">
+        <li className="font-semibold overflow-hidden text-ellipsis line-clamp-2 text-sm mb-2">
           {title}
         </li>
 
-        <ul className="text-[rgb(96,96,96)] text-xs font-semibold flex items-center">
+        <ul className="text-[rgb(96,96,96)] text-xs font-normal flex items-center">
           <li className="mr-2"> {views} views </li>
           <li className="mr-2"> {publishTime} </li>
           <li>
@@ -66,4 +66,5 @@ const SearchCard = ({
   );
 };
 
-export default SearchCard;
+export default VideoRelatedCard;
+;
